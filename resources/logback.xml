@@ -1,0 +1,25 @@
+<configuration scan="true">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d %-5p [%c{2}] %m%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="vinted.ping-monitor" level="INFO" />
+    <logger name="org.apache.samza" level="ERROR" />
+    <logger name="org.apache.zookeeper" level="INFO" />
+    <logger name="kafka" level="INFO" />
+    <logger name="javax.management.mbeanserver" level="INFO" />
+    <logger name="javax.management.misc" level="INFO" />
+
+    <!-- use classic instead of reactor -->
+    <appender name="async" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="STDOUT"/>
+    </appender>
+
+    <root level="ALL">
+        <appender-ref ref="async"/>
+    </root>
+</configuration>
